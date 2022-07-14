@@ -35,7 +35,7 @@ this.operation = undefined
         const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
         if (isNaN(prev) || isNaN(current))return
-         switch (this.Operation) {
+         switch (this.operation) {
         case '+':
              computation = prev + current
              break
@@ -55,22 +55,19 @@ this.operation = undefined
      this.operation = undefined
      this.previousOperand = ''
     }
-
-    getDisplayNumber(number) {
-        console.log(number)
+ getDisplayNumber(number) {
         const stringNumber = number.toString()
-        const integerDigits = parseFloat(stringNumber)
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
         const decimalDigits = stringNumber.split('.')[1]
         let integerDisplay
         if (isNaN(integerDigits)) {
             integerDisplay = ''
         } else {
-            //integerDisplay = integerDigits.toLocaleString('en', {maximumFractionDigits: 0}) 
-            return integerDisplay
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
         }
-       if (decimalDigits != null) {
-        return `${integerDisplay}.${decimalDigits}`
-       } else {
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
             return integerDisplay
         }
     }
